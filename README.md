@@ -2,6 +2,8 @@
 
 A clean zsh theme with command execution time tracking.
 
+![screenshot](screenshot.png)
+
 ## Install
 
 ```bash

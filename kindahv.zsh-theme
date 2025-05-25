@@ -4,6 +4,7 @@ local COLOR_GREEN="%{$fg[green]%}"
 local COLOR_BLUE="%{$fg[blue]%}"
 local COLOR_YELLOW="%{$fg[yellow]%}"
 local COLOR_GRAY="\033[90m"
+local COLOR_LIGHT_BROWN="%{$FG[094]%}"
 local COLOR_RESET="%{$reset_color%}"
 local COLOR_RESET_ANSI="\033[0m"
 local COLOR_GREEN_ANSI="\033[32m"
@@ -22,6 +23,12 @@ local SYMBOL_CORNER="└"
 local TIME_THRESHOLD_MS=100
 local TIME_THRESHOLD_MS_WARN=500
 local TIME_THRESHOLD_SEC=3
+
+_container_prompt() {
+    if [[ -n "$CONTAINER_ID" ]]; then
+        echo "${COLOR_LIGHT_BROWN}[${CONTAINER_ID}]${COLOR_RESET} "
+    fi
+}
 
 local user_host="%B%(!.${COLOR_RED}.${COLOR_GREEN})%n@%m${COLOR_RESET} "
 local current_dir="%B${COLOR_BLUE}%~ ${COLOR_RESET}"
@@ -57,7 +64,7 @@ ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX="${SYMBOL_BRANCH_SUFFIX} ${COLOR_RESET}"
 ZSH_THEME_VIRTUALENV_PREFIX="$ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX"
 ZSH_THEME_VIRTUALENV_SUFFIX="$ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX"
 
-PROMPT="┌─${conda_prompt}${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}${kube_prompt}
+PROMPT="┌─${conda_prompt}${user_host}\$(_container_prompt)${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}${kube_prompt}
 ${SYMBOL_CORNER}─%B${SYMBOL_USER}%b "
 RPROMPT=''
 

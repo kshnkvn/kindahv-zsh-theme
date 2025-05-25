@@ -4,6 +4,10 @@ A clean zsh theme with command execution time tracking.
 
 ![screenshot](screenshot.png)
 
+Inside a container:
+
+![screenshot-container](screenshot-container.png)
+
 ## Install
 
 ```bash
@@ -22,3 +26,4 @@ ZSH_THEME="kindahv"
 - Virtual environment support
 - Error code display
 - Clean two-line prompt
+- Print $CONTAINER_ID if set (e.g. in Distrobox)
